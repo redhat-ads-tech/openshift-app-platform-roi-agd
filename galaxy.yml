@@ -1,0 +1,25 @@
+---
+namespace: rhdp
+name: workshop
+version: 1.0.0
+readme: README.md
+authors:
+  - Your Name <your.email@example.com>
+
+description: Ansible collection for deploying the "Unlocking OpenShift's Full Value - Using Application Platform Capabilities that Bring Real ROI for Your Apps" lab environment
+
+license:
+  - GPL-2.0-or-later
+
+tags:
+  - openshift
+  - workshop
+  - platform_engineering
+  - advanced_application_platform
+
+dependencies: {}
+
+build_ignore:
+  - .git
+  - .gitignore
+  - .DS_Store
