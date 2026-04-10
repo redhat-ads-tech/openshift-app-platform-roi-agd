@@ -73,8 +73,5 @@
 - name: Deploy app-of-apps
   ansible.builtin.include_tasks: app_of_apps.yml
 
-- name: Install Terminal
-  ansible.builtin.include_tasks: terminal.yml
-
 - name: Wait for all ArgoCD Applications to sync
   ansible.builtin.include_tasks: wait_for_apps.yml

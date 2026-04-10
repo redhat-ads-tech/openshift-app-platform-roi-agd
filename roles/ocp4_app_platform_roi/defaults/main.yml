@@ -25,11 +25,6 @@ ocp4_app_platform_roi_noobaa_namespace: openshift-storage
 ocp4_app_platform_roi_noobaa_name: noobaa
 
 # ------------------------------------------------
-# Web Terminal
-# ------------------------------------------------
-ocp4_app_platform_roi_terminal_install: true
-
-# ------------------------------------------------
 # GitLab
 # ------------------------------------------------
 
@@ -45,35 +40,6 @@ ocp4_app_platform_roi_gitlab_config_host:
   "gitlab-{{ ocp4_app_platform_roi_gitlab_namespace }}.{{ r_openshift_subdomain }}"
 
 ocp4_app_platform_roi_gitlab_users_password: "{{ common_password }}"
-
-# ------------------------------------------------
-# Red Hat Build Of Keycloak
-# ------------------------------------------------
-
-ocp4_app_platform_roi_rhbk_client_backstage_name: backstage
-ocp4_app_platform_roi_rhbk_application_name: keycloak
-ocp4_app_platform_roi_rhbk_namespace: keycloak
-
-ocp4_app_platform_roi_rhbk_cr_name: keycloak
-ocp4_app_platform_roi_rhbk_external_access: false
-ocp4_app_platform_roi_rhbk_host: sso
-
-ocp4_app_platform_roi_rhbk_realm_backstage_name: backstage
-
-ocp4_app_platform_roi_rhbk_client_backstage_secret:
-  "{{ lookup('ansible.builtin.password', '/tmp/passwordfile-client-backstage', chars=['ascii_letters', 'digits'], length=32) }}"
-
-ocp4_app_platform_roi_rhbk_client_backstage_plugin_name:
-  "{{ ocp4_app_platform_roi_rhbk_realm_backstage_name }}-plugin"
-ocp4_app_platform_roi_rhbk_client_backstage_plugin_secret:
-  "{{ lookup('ansible.builtin.password', '/tmp/passwordfile-client-backstage-plugin', chars=['ascii_letters', 'digits'], length=32) }}"
-
-ocp4_app_platform_roi_rhbk_user_password: "{{ common_password }}"
-
-ocp4_app_platform_roi_rhbk_client_tpacli_secret:
-  "{{ lookup('ansible.builtin.password', '/tmp/passwordfile-client-tpacli', chars=['ascii_letters', 'digits'], length=32) }}"
-
-
 
 # ------------------------------------------------
 # Quay
@@ -121,86 +87,10 @@ ocp4_app_platform_roi_vault_auth_namespace: default
 ocp4_app_platform_roi_external_secrets_namespace: external-secrets
 
 # ------------------------------------------------
-# RHDH GitOps
-# ------------------------------------------------
-
-ocp4_app_platform_roi_rhdh_gitops_namespace: rhdh-gitops
-ocp4_app_platform_roi_rhdh_gitops_name: rhdh-gitops
-ocp4_app_platform_roi_rhdh_gitops_password: "{{ common_password }}"
-
-# ------------------------------------------------
-# Red Hat Developer Hub
-# ------------------------------------------------
-
-ocp4_app_platform_roi_rhdh_argo_application_name: backstage-bootstrap
-ocp4_app_platform_roi_rhdh_namespace: rhdh
-ocp4_app_platform_roi_rhdh_psql_password: password
-
-# ------------------------------------------------
-# Developer Hub (Operator-based deployment)
-# ------------------------------------------------
-
-ocp4_app_platform_roi_developer_hub_namespace: rhdh
-ocp4_app_platform_roi_developer_hub_config_git_host: github.com
-ocp4_app_platform_roi_developer_hub_config_git_group: redhat-ads-tech
-ocp4_app_platform_roi_developer_hub_config_git_repo: ocp-app-platform-demo-developer-hub-config
-ocp4_app_platform_roi_developer_hub_config_git_revision: main
-
-# ------------------------------------------------
-# Orchestrator
-# ------------------------------------------------
-
-ocp4_app_platform_roi_orchestrator_application_name: orchestrator
-ocp4_app_platform_roi_orchestrator_namespace: >-
-  {{ ocp4_app_platform_roi_rhdh_namespace }}
-ocp4_app_platform_roi_orchestrator_token: >-
-  {{ lookup('ansible.builtin.password', '/tmp/passwordfile-orchestrator-token', chars=['ascii_letters', 'digits'], length=24) }}
-
-# ------------------------------------------------
 # OpenShift Dev Spaces
 # ------------------------------------------------
 
 ocp4_app_platform_roi_devspaces_install: true
 ocp4_app_platform_roi_devspaces_name: devspaces
 ocp4_app_platform_roi_devspaces_namespace: openshift-devspaces
-
-ocp4_app_platform_roi_rhbk_client_openshift_name: openshift
-ocp4_app_platform_roi_rhbk_client_openshift_secret:
-  "{{ lookup('ansible.builtin.password', '/tmp/passwordfile-client-openshift', chars=['ascii_letters', 'digits'], length=32) }}"
-
-ocp4_app_platform_roi_openshift_oauth_name: openshift-oauth
-ocp4_app_platform_roi_openshift_oauth_namespace: openshift-config
-
-# ------------------------------------------------
-# Red Hat Trusted Artifact Signer
-# ------------------------------------------------
-
-ocp4_app_platform_roi_rhtas_application_name: trusted-artifact-signer
-ocp4_app_platform_roi_rhtas_namespace: trusted-artifact-signer
-
-ocp4_app_platform_roi_rhtas_instance_name: securesign
-ocp4_app_platform_roi_rhtas_oidc_issuer:
-  "{{ ocp4_app_platform_roi_rhbk_host }}.{{ r_openshift_subdomain }}/realms/{{ ocp4_app_platform_roi_rhbk_realm_backstage_name }}" # yamllint disable-line rule:line-length
-ocp4_app_platform_roi_rhtas_root_cert_email: admin@rhdemo.com
-ocp4_app_platform_roi_rhtas_root_cert_org: Parasol
-
-# ------------------------------------------------
-# Red Hat Trusted Profile Analyzer
-# ------------------------------------------------
-
-ocp4_app_platform_roi_tpa_application_name: trusted-profile-analyzer
-ocp4_app_platform_roi_tpa_namespace: trusted-profile-analyzer
-ocp4_app_platform_roi_tpa_s3_region: "https://s3-{{ ocp4_app_platform_roi_noobaa_namespace }}.{{ r_openshift_subdomain }}:443"
-ocp4_app_platform_roi_tpa_appDomain: "-{{ ocp4_app_platform_roi_tpa_namespace }}.{{ r_openshift_subdomain }}"
-ocp4_app_platform_roi_tpa_oidc_issuer:
-  "https://{{ ocp4_app_platform_roi_rhbk_host }}.{{ r_openshift_subdomain }}/realms/{{ ocp4_app_platform_roi_rhbk_realm_backstage_name }}" # yamllint disable-line rule:line-length
-
-# ------------------------------------------------
-# Red Hat Advanced Cluster Security
-# ------------------------------------------------
-
-ocp4_app_platform_roi_acs_application_name: acs
-ocp4_app_platform_roi_acs_namespace: stackrox 
-ocp4_app_platform_roi_acs_clustername: local-cluster
-ocp4_app_platform_roi_acs_adminpassword: "{{ common_password }}"
 
